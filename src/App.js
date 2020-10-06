@@ -14,10 +14,14 @@ function App() {
     AuthListener();
   })
 
-  const signUpHandle = () =>{
+  const signUpHandle = (e) =>{
+    e.preventDefault();
+    console.log('suc');
     fire.auth().createUserWithEmailAndPassword(email, password)
     .then(cred => {
       console.log(cred.user);
+      setEmail('');
+      setPassword('');
     })
   }
 
@@ -28,13 +32,16 @@ function App() {
     })
   }
 
-  const logInHandle = () =>{
-
+  const logInHandle = (e) =>{
+    e.preventDefault();
     fire.auth()
     .signInWithEmailAndPassword(email, password)
     .then(cred => {
       console.log(cred.user);
       console.log('logged In');
+      setEmail('');
+      setPassword('');
+
     })
   }
 
